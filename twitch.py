@@ -16,7 +16,9 @@ try:
 except ImportError:
     DISCORD_AVAILABLE = False
 
-TOKEN = "TOKEN_HERE"
+TOKEN = os.environ.get("DISCORD_TOKEN") or os.environ.get("TOKEN")
+if not TOKEN:
+    raise RuntimeError("Discord bot token is required. Set the DISCORD_TOKEN environment variable.")
 ALLOWED_CHANNEL_ID = 1492484129114292285  
 STOCK_UPDATE_INTERVAL = 30  
 
